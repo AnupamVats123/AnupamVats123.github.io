@@ -6,7 +6,25 @@
 
 <title>Anupam Vats | CFD & Thermal Engineering</title>
 
+<meta name="description"
+content="Anupam Vats — CFD, Thermal Sciences and Computational Fluid Dynamics research portfolio. M.Tech research on BCM-DES transition modelling.">
+
 <style>
+
+:root {
+    --bg: #050b14;
+    --bg2: #091526;
+    --card: #0c192a;
+    --card2: #101f33;
+    --line: #20334b;
+    --text: #edf5ff;
+    --muted: #9aadc3;
+    --blue: #42b8ff;
+    --blue2: #1597e5;
+    --cyan: #69d4ff;
+    --white: #ffffff;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -18,437 +36,1153 @@ html {
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #07101f;
-    color: #e9f2ff;
+    background: var(--bg);
+    color: var(--text);
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
     line-height: 1.7;
 }
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container {
+    width: min(1180px, 90%);
+    margin: auto;
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
 
 nav {
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
-    padding: 20px 7%;
-    background: rgba(7,16,31,0.85);
-    backdrop-filter: blur(12px);
+    height: 76px;
     z-index: 1000;
+
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+
+    padding: 0 5%;
+
+    background: rgba(5,11,20,0.78);
+    backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
 .logo {
-    font-weight: bold;
-    font-size: 20px;
-    letter-spacing: 2px;
+    font-size: 19px;
+    font-weight: 750;
+    letter-spacing: 3px;
 }
 
-nav a {
-    color: #b9c8da;
-    text-decoration: none;
-    margin-left: 25px;
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: #aebfd2;
     font-size: 14px;
+    transition: 0.25s;
 }
 
-nav a:hover {
-    color: #54b9ff;
+.nav-links a:hover {
+    color: var(--blue);
 }
+
+
+/* =========================
+   HERO
+========================= */
 
 .hero {
     min-height: 100vh;
-    padding: 150px 8% 100px;
+
     display: flex;
     align-items: center;
+
     position: relative;
     overflow: hidden;
+
+    padding: 140px 5% 90px;
+
     background:
-        radial-gradient(circle at 75% 45%, rgba(40,140,220,0.20), transparent 30%),
-        linear-gradient(135deg,#050b16,#0a1830 55%,#06101e);
+        radial-gradient(
+            circle at 78% 45%,
+            rgba(37,164,239,0.18),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 25% 80%,
+            rgba(20,110,190,0.10),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #030811,
+            #081526 55%,
+            #06101e
+        );
 }
 
-.hero:before {
+
+/* CFD-like flow lines */
+
+.hero::before {
     content: "";
     position: absolute;
+
     width: 900px;
-    height: 500px;
-    right: -250px;
-    top: 180px;
+    height: 650px;
+
+    right: -200px;
+    top: 100px;
+
     background:
         repeating-linear-gradient(
-            175deg,
+            172deg,
             transparent 0px,
-            transparent 8px,
-            rgba(85,180,255,0.12) 9px,
-            transparent 11px
+            transparent 10px,
+            rgba(66,184,255,0.12) 11px,
+            transparent 13px
         );
-    transform: rotate(-8deg);
-    opacity: 0.8;
+
+    transform: rotate(-7deg);
+    opacity: 0.7;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    right: 2%;
+    top: 25%;
+
+    border-radius: 50%;
+
+    border:
+        1px solid rgba(66,184,255,0.16);
+
+    box-shadow:
+        0 0 80px rgba(66,184,255,0.05);
+
+    opacity: 0.6;
 }
 
 .hero-content {
-    max-width: 900px;
     position: relative;
     z-index: 2;
+
+    max-width: 930px;
 }
 
-.tag {
-    color: #55bfff;
+.eyebrow {
+    color: var(--blue);
+    font-size: 12px;
+    font-weight: 600;
+
     letter-spacing: 4px;
-    font-size: 13px;
-    margin-bottom: 25px;
     text-transform: uppercase;
+
+    margin-bottom: 28px;
 }
 
-h1 {
-    font-size: clamp(48px,8vw,92px);
-    line-height: 0.95;
-    margin-bottom: 30px;
-    letter-spacing: -3px;
-}
+.hero h1 {
+    font-size: clamp(52px, 7vw, 91px);
 
-.highlight {
-    color: #55bfff;
-}
+    line-height: 0.98;
+    letter-spacing: -4px;
 
-.hero p {
-    max-width: 760px;
-    color: #aebed2;
-    font-size: 19px;
     margin-bottom: 35px;
+
+    max-width: 1000px;
+}
+
+.gradient-text {
+    color: var(--blue);
+}
+
+.hero-description {
+    max-width: 800px;
+
+    color: #aebfd2;
+
+    font-size: 18px;
+
+    margin-bottom: 38px;
 }
 
 .buttons {
     display: flex;
-    gap: 15px;
     flex-wrap: wrap;
+    gap: 14px;
 }
 
 .btn {
-    padding: 14px 25px;
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 14px 24px;
+
     border-radius: 7px;
-    text-decoration: none;
-    font-weight: bold;
-    display: inline-block;
+
+    font-size: 14px;
+    font-weight: 650;
+
+    transition: 0.25s;
 }
 
-.primary {
-    background: #39a9f4;
-    color: #06101c;
+.btn-primary {
+    background: var(--blue);
+    color: #03101a;
 }
 
-.secondary {
-    border: 1px solid #40516b;
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 35px rgba(66,184,255,0.20);
+}
+
+.btn-outline {
+    border: 1px solid #334a64;
     color: white;
 }
 
+.btn-outline:hover {
+    border-color: var(--blue);
+    color: var(--blue);
+}
+
+
+/* =========================
+   SMALL STATS
+========================= */
+
+.hero-stats {
+    margin-top: 70px;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 42px;
+}
+
+.stat strong {
+    display: block;
+
+    font-size: 25px;
+    color: white;
+}
+
+.stat span {
+    color: #71859c;
+
+    font-size: 11px;
+
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+
+/* =========================
+   GENERAL SECTION
+========================= */
+
 section {
-    padding: 100px 8%;
+    padding: 105px 0;
+}
+
+.section-dark {
+    background: var(--bg2);
+}
+
+.section-label {
+    color: var(--blue);
+
+    font-size: 11px;
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 12px;
 }
 
 .section-title {
-    font-size: 40px;
-    margin-bottom: 20px;
+    font-size: clamp(35px, 5vw, 54px);
+
+    line-height: 1.05;
+
+    letter-spacing: -2px;
+
+    margin-bottom: 18px;
 }
 
-.section-subtitle {
-    color: #91a4ba;
-    max-width: 750px;
-    margin-bottom: 45px;
+.section-intro {
+    max-width: 780px;
+
+    color: var(--muted);
+
+    font-size: 16px;
+
+    margin-bottom: 50px;
 }
 
-.research {
-    background: #091426;
-}
 
-.cards {
+/* =========================
+   RESEARCH
+========================= */
+
+.research-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-    gap: 20px;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
 }
 
-.card {
+.research-card {
+    background: linear-gradient(
+        145deg,
+        #0d1b2e,
+        #091525
+    );
+
+    border: 1px solid var(--line);
+
+    border-radius: 13px;
+
     padding: 30px;
-    border: 1px solid #1d3049;
-    background: #0c1a2d;
-    border-radius: 12px;
+
+    min-height: 270px;
+
     transition: 0.3s;
 }
 
-.card:hover {
-    transform: translateY(-5px);
-    border-color: #42b5ff;
+.research-card:hover {
+    transform: translateY(-6px);
+
+    border-color:
+        rgba(66,184,255,0.55);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,0.20);
 }
 
-.card span {
-    color: #55bfff;
+.card-number {
+    color: var(--blue);
+
+    font-family: monospace;
+
     font-size: 13px;
+
     letter-spacing: 2px;
 }
 
-.card h3 {
-    margin: 12px 0;
-    font-size: 23px;
+.research-card h3 {
+    font-size: 24px;
+
+    margin: 15px 0 12px;
 }
 
-.card p {
-    color: #9eb0c5;
+.research-card p {
+    color: var(--muted);
+
+    font-size: 14px;
 }
 
-.thesis {
-    background: #07101f;
+
+/* =========================
+   BCM-DES
+========================= */
+
+.model-section {
+    background: #06101d;
 }
 
-.thesis-box {
-    max-width: 950px;
-    border-left: 3px solid #43b7ff;
-    padding: 35px;
-    background: #0b182a;
+.model-layout {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 60px;
+
+    align-items: center;
 }
 
-.thesis-box h3 {
-    font-size: 28px;
+.model-text p {
+    color: var(--muted);
+
     margin-bottom: 20px;
 }
 
-.metrics {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
+.formula-box {
     margin-top: 30px;
+
+    padding: 30px;
+
+    border-left:
+        3px solid var(--blue);
+
+    background: #0b1a2c;
+
+    border-radius: 0 10px 10px 0;
 }
 
-.metric {
-    padding: 14px 20px;
-    background: #101f34;
-    border-radius: 7px;
-    color: #b9d2e9;
+.formula {
+    font-family: Georgia, serif;
+
+    font-size: 34px;
+
+    color: white;
+
+    margin-bottom: 10px;
 }
 
-.about {
-    background: #091426;
+.formula-description {
+    color: #8fa5bc;
+
+    font-size: 13px;
 }
+
+.model-diagram {
+    position: relative;
+
+    padding: 35px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0d2037,
+            #071322
+        );
+
+    border: 1px solid var(--line);
+
+    border-radius: 15px;
+}
+
+.flow-box {
+    padding: 18px;
+
+    border: 1px solid #29445f;
+
+    background: #0c1b2d;
+
+    border-radius: 8px;
+
+    text-align: center;
+
+    margin-bottom: 15px;
+}
+
+.flow-box strong {
+    display: block;
+
+    color: var(--blue);
+
+    margin-bottom: 5px;
+}
+
+.arrow {
+    text-align: center;
+
+    color: #5c7188;
+
+    margin-bottom: 15px;
+}
+
+
+/* =========================
+   CASE STUDIES
+========================= */
+
+.case-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.case {
+    min-height: 390px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: flex-end;
+
+    padding: 30px;
+
+    border-radius: 15px;
+
+    border: 1px solid var(--line);
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(5,12,22,0.10),
+            rgba(5,12,22,0.96)
+        );
+    
+    position: relative;
+
+    overflow: hidden;
+
+    transition: 0.3s;
+}
+
+/* Abstract CFD visualization */
+
+.case::before {
+    content: "";
+
+    position: absolute;
+
+    width: 300px;
+    height: 180px;
+
+    right: -80px;
+    top: 60px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid rgba(66,184,255,0.22);
+
+    box-shadow:
+        -40px 20px 0 -10px rgba(66,184,255,0.04),
+        -80px 40px 0 -20px rgba(66,184,255,0.04);
+
+    transform: rotate(-15deg);
+}
+
+.case:hover {
+    transform: translateY(-5px);
+
+    border-color:
+        rgba(66,184,255,0.55);
+}
+
+.case-content {
+    position: relative;
+
+    z-index: 2;
+}
+
+.case-tag {
+    color: var(--blue);
+
+    font-family: monospace;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 10px;
+}
+
+.case h3 {
+    font-size: 30px;
+
+    margin-bottom: 10px;
+}
+
+.case p {
+    color: #a4b6ca;
+
+    font-size: 14px;
+
+    margin-bottom: 18px;
+}
+
+.case-result {
+    display: inline-block;
+
+    padding: 7px 11px;
+
+    border-radius: 5px;
+
+    background: #10263d;
+
+    color: #c5d8e9;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   RESULTS
+========================= */
+
+.results {
+    background: var(--bg2);
+}
+
+.results-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 15px;
+}
+
+.result-card {
+    padding: 25px;
+
+    border: 1px solid var(--line);
+
+    border-radius: 10px;
+
+    background: #0b192a;
+}
+
+.result-card strong {
+    display: block;
+
+    font-size: 28px;
+
+    color: var(--blue);
+
+    margin-bottom: 7px;
+}
+
+.result-card span {
+    color: #8296ac;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   THESIS
+========================= */
+
+.thesis {
+    background: #050b14;
+}
+
+.thesis-box {
+    padding: 50px;
+
+    border:
+        1px solid #213850;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0c1c30,
+            #081322
+        );
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.thesis-box::after {
+    content: "M.TECH";
+
+    position: absolute;
+
+    right: -20px;
+    bottom: -45px;
+
+    font-size: 150px;
+
+    font-weight: 800;
+
+    color: rgba(255,255,255,0.025);
+}
+
+.thesis-label {
+    color: var(--blue);
+
+    font-size: 12px;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 18px;
+}
+
+.thesis-title {
+    font-size: clamp(27px, 4vw, 42px);
+
+    line-height: 1.15;
+
+    max-width: 900px;
+
+    margin-bottom: 20px;
+}
+
+.thesis-meta {
+    color: #8fa4bb;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================
+   CONTRIBUTIONS
+========================= */
+
+.contribution-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 18px;
+}
+
+.contribution {
+    padding: 27px;
+
+    border: 1px solid var(--line);
+
+    border-radius: 10px;
+
+    background: #0a1727;
+}
+
+.contribution h3 {
+    margin-bottom: 10px;
+
+    font-size: 19px;
+}
+
+.contribution p {
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   ABOUT
+========================= */
 
 .about-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
+
+    grid-template-columns:
+        1.1fr 0.9fr;
+
+    gap: 70px;
 }
 
-.about p {
-    color: #a5b6c9;
+.about-text p {
+    color: var(--muted);
+
+    margin-bottom: 18px;
 }
 
 .skills {
     display: flex;
+
     flex-wrap: wrap;
-    gap: 10px;
+
+    gap: 9px;
+
+    margin-top: 20px;
 }
 
 .skill {
-    padding: 9px 15px;
-    border: 1px solid #2b4059;
+    padding: 8px 13px;
+
+    border:
+        1px solid #2a4058;
+
     border-radius: 30px;
-    color: #a9c5df;
+
+    color: #a9bfd5;
+
+    font-size: 12px;
 }
+
+
+/* =========================
+   CONTACT
+========================= */
 
 .contact {
     text-align: center;
-    background: #050c17;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #10253d,
+            #050b14 60%
+        );
 }
 
 .contact p {
-    color: #9eb0c5;
-    margin: 20px auto 30px;
+    max-width: 620px;
+
+    margin: 0 auto 30px;
+
+    color: var(--muted);
 }
+
+
+/* =========================
+   FOOTER
+========================= */
 
 footer {
-    padding: 30px;
+    padding: 30px 5%;
+
     text-align: center;
-    color: #657991;
-    background: #040914;
-    font-size: 13px;
+
+    border-top: 1px solid #142438;
+
+    color: #667b92;
+
+    font-size: 12px;
 }
 
-@media(max-width:700px) {
 
-    nav {
-        padding: 15px 5%;
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width: 900px) {
+
+    .research-grid,
+    .case-grid {
+        grid-template-columns: 1fr 1fr;
     }
 
-    nav .links {
-        display: none;
+    .results-grid {
+        grid-template-columns: 1fr 1fr;
     }
 
-    section {
-        padding: 75px 6%;
-    }
-
-    .hero {
-        padding: 130px 6% 80px;
-    }
-
-    h1 {
-        font-size: 52px;
-    }
-
-    .hero p {
-        font-size: 16px;
-    }
-
+    .model-layout,
     .about-grid {
         grid-template-columns: 1fr;
     }
+
 }
+
+@media(max-width: 650px) {
+
+    nav {
+        height: 65px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero {
+        padding-top: 120px;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+
+        letter-spacing: -2.5px;
+    }
+
+    .hero-description {
+        font-size: 16px;
+    }
+
+    .hero-stats {
+        gap: 25px;
+    }
+
+    section {
+        padding: 75px 0;
+    }
+
+    .research-grid,
+    .case-grid,
+    .results-grid,
+    .contribution-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .thesis-box {
+        padding: 30px 25px;
+    }
+
+    .formula {
+        font-size: 27px;
+    }
+
+}
+
 </style>
 </head>
 
+
 <body>
 
-<nav>
-    <div class="logo">ANUPAM VATS</div>
 
-    <div class="links">
-        <a href="#research">Research</a>
-        <a href="#thesis">Thesis</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<nav>
+
+    <div class="logo">
+        ANUPAM VATS
     </div>
+
+    <div class="nav-links">
+
+        <a href="#research">
+            Research
+        </a>
+
+        <a href="#cases">
+            Case Studies
+        </a>
+
+        <a href="#thesis">
+            Thesis
+        </a>
+
+        <a href="#about">
+            About
+        </a>
+
+        <a href="#contact">
+            Contact
+        </a>
+
+    </div>
+
 </nav>
 
-<section class="hero">
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<header class="hero">
 
     <div class="hero-content">
 
-        <div class="tag">
+        <div class="eyebrow">
             CFD ENGINEER • THERMAL SCIENCE • NUMERICAL SIMULATION
         </div>
 
         <h1>
             I implement and evaluate the <span class="highlight">BCM-DES model</span>
-            for transitional separated flows.
+               for transitional separated flows.
         </h1>
 
-        <p>
-            My M.Tech research focuses on a transition-aware hybrid
-            RANS–LES approach for predicting transitional separated flows
-            using the BCM-DES model and the PRAVAHA-IITH compressible
+        <p class="hero-description">
+
+            M.Tech research on a transition-aware hybrid RANS–LES
+            approach for transitional separated flows using the
+            BCM-DES model and the PRAVAHA-IITH compressible
             finite-volume solver.
+
         </p>
 
         <div class="buttons">
-            <a href="#research" class="btn primary">
+
+            <a
+                href="#research"
+                class="btn btn-primary">
+
                 Explore My Research →
+            
             </a>
 
-            <a href="#thesis" class="btn secondary">
+
+            <a
+                href="#thesis"
+                class="btn btn-outline">
+
                 View My Thesis
+            
             </a>
+
+        </div>
+
+
+        <div class="hero-stats">
+
+            <div class="stat">
+
+                <strong>
+                    BCM-DES
+                </strong>
+
+                <span>
+                    Hybrid Model
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <strong>
+                    Re = 152k
+                </strong>
+
+                <span>
+                    Rotating Cylinder
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <strong>
+                    Re = 10⁶
+                </strong>
+
+                <span>
+                    Drag Crisis Study
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <strong>
+                    NIT Calicut
+                </strong>
+
+                <span>
+                    M.Tech Research
+                </span>
+
+            </div>
+
         </div>
 
     </div>
 
-</section>
+</header>
 
 
-<section id="research" class="research">
 
-    <h2 class="section-title">Research</h2>
+<!-- =========================
+     RESEARCH
+========================= -->
 
-    <p class="section-subtitle">
-        My thesis investigates transition-sensitive hybrid RANS–LES
-        modelling across canonical bluff-body and low-Reynolds-number
-        aerodynamic configurations.
-    </p>
+<section
+    id="research"
+    class="section-dark">
 
-    <div class="cards">
+    <div class="container">
 
-        <div class="card">
-            <span>01 — MODEL DEVELOPMENT</span>
-            <h3>BCM-DES</h3>
-            <p>
-                Coupling the SA-BCM transition model with the SA-DDES
-                framework through the blending parameter
-                Φ = f<sub>d</sub> × γ<sub>BC</sub>.
-            </p>
+        <div class="section-label">
+            01 — RESEARCH
         </div>
 
-        <div class="card">
-            <span>02 — SOLVER</span>
-            <h3>PRAVAHA-IITH</h3>
-            <p>
-                Simulations performed using an in-house compressible
-                unstructured finite-volume CFD solver.
-            </p>
-        </div>
+        <h2 class="section-title">
+            Transition-aware CFD
+        </h2>
 
-        <div class="card">
-            <span>03 — BLUFF BODY</span>
-            <h3>Drag Crisis</h3>
-            <p>
-                Stationary circular cylinder simulations from
-                Re = 5×10⁴ to 10⁶ to investigate transition-induced
-                drag reduction.
-            </p>
-        </div>
+        <p class="section-intro">
 
-        <div class="card">
-            <span>04 — ROTATING FLOW</span>
-            <h3>Lift Crisis</h3>
-            <p>
-                Rotating-cylinder simulations at Re = 152,000 across
-                multiple spin ratios to investigate rotation-induced
-                asymmetric transition.
-            </p>
-        </div>
+            My research combines transition modelling and
+            scale-resolving simulation to investigate separated
+            flows where conventional fully turbulent assumptions
+            can miss important boundary-layer physics.
 
-        <div class="card">
-            <span>05 — AIRFOIL</span>
-            <h3>Eppler 387</h3>
-            <p>
-                Low-Reynolds-number airfoil simulations examining
-                laminar separation bubbles, transition and static stall.
-            </p>
-        </div>
-
-        <div class="card">
-            <span>06 — FLOW PHYSICS</span>
-            <h3>Q-Criterion</h3>
-            <p>
-                Three-dimensional wake structures and turbulent
-                flow features investigated through CFD visualization.
-            </p>
-        </div>
-
-    </div>
-
-</section>
-
-
-<section id="thesis" class="thesis">
-
-    <h2 class="section-title">M.Tech Thesis</h2>
-
-    <div class="thesis-box">
-
-        <h3>
-            Implementation and Testing of a Hybrid RANS-LES
-            (BCM-DES) Model for Transitional Separated Flows
-            over Curved Bluff Bodies
-        </h3>
-
-        <p>
-            Master of Technology in Mechanical Engineering
-            (Thermal Sciences), National Institute of Technology Calicut.
         </p>
 
-        <div class="metrics">
 
-            <div class="metric">RANS–LES</div>
-            <div class="metric">BCM-DES</div>
-            <div class="metric">DDES</div>
-            <div class="metric">CFD</div>
-            <div class="metric">Compressible Flow</div>
-            <div class="metric">Finite Volume Method</div>
+        <div class="research-grid">
+
+
+            <article class="research-card">
+
+                <div class="card-number">
+                    01 / MODEL
+                </div>
+
+                <h3>
+                    BCM-DES
+                </h3>
+
+                <p>
+
+                    A transition-aware hybrid RANS–LES formulation
+                    combining the SA-BCM transition model with
+                    the SA-DDES framework through a blending parameter.
+
+                </p>
+
+            </article>
+
+
+            <article class="research-card">
+
+                <div class="card-number">
+                    02 / SOLVER
+                </div>
+
+                <h3>
+                    PRAVAHA-IITH
+                </h3>
+
+                <p>
+
+                    Implementation and testing were carried out
+                    using the PRAVAHA-IITH compressible,
+                    unstructured finite-volume solver.
+
+                </p>
+
+            </article>
+
+
+            <article class="research-card">
+
+                <div class="card-number">
+                    03 / VALIDATION
+                </div>
+
+                <h3>
+                    Transition Validation
+                </h3>
+
+                <p>
+
+                    The BCM-DES formulation was validated using
+                    flat-plate transition benchmarks before
+                    application to separated aerodynamic flows.
+
+                </p>
+
+            </article>
+
 
         </div>
 
@@ -457,48 +1191,120 @@ footer {
 </section>
 
 
-<section class="about" id="about">
 
-    <div class="about-grid">
+<!-- =========================
+     MODEL
+========================= -->
 
-        <div>
-            <h2 class="section-title">About Me</h2>
+<section
+    id="model"
+    class="model-section">
 
-            <p>
-                I am a Mechanical Engineer specializing in Computational
-                Fluid Dynamics and Thermal Sciences. My research interests
-                include turbulence modelling, transitional flows,
-                hybrid RANS–LES methods, aerodynamic flows and numerical
-                simulation.
-            </p>
+    <div class="container">
 
-            <br>
+        <div class="model-layout">
 
-            <p>
-                My M.Tech research at NIT Calicut focuses on developing
-                and testing the BCM-DES transition-aware hybrid
-                RANS–LES model for separated flows.
-            </p>
 
-        </div>
+            <div class="model-text">
 
-        <div>
+                <div class="section-label">
+                    02 — MODEL DEVELOPMENT
+                </div>
 
-            <h2 class="section-title">Technical Skills</h2>
+                <h2 class="section-title">
+                    One framework.
+                    Two capabilities.
+                </h2>
 
-            <div class="skills">
+                <p>
 
-                <div class="skill">CFD</div>
-                <div class="skill">RANS</div>
-                <div class="skill">LES</div>
-                <div class="skill">DES / DDES</div>
-                <div class="skill">BCM Transition Model</div>
-                <div class="skill">ANSYS Fluent</div>
-                <div class="skill">OpenFOAM</div>
-                <div class="skill">Finite Volume Method</div>
-                <div class="skill">Compressible Flow</div>
-                <div class="skill">Python</div>
-                <div class="skill">C++</div>
+                    BCM-DES was developed to combine
+                    transition detection with the scale-resolving
+                    capability of a delayed detached-eddy
+                    simulation framework.
+
+                </p>
+
+                <p>
+
+                    The formulation modifies the DDES length scale
+                    using the transition-aware blending parameter,
+                    without introducing additional transport equations.
+
+                </p>
+
+
+                <div class="formula-box">
+
+                    <div class="formula">
+                        Φ = f<sub>d</sub> × γ<sub>BC</sub>
+                    </div>
+
+                    <div class="formula-description">
+
+                        Transition-sensitive blending between
+                        RANS and scale-resolving behaviour.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="model-diagram">
+
+                <div class="flow-box">
+
+                    <strong>
+                        SA-BCM
+                    </strong>
+
+                    Transition detection
+
+                </div>
+
+                <div class="arrow">
+                    ↓
+                </div>
+
+                <div class="flow-box">
+
+                    <strong>
+                        γ<sub>BC</sub>
+                    </strong>
+
+                    BCM intermittency function
+
+                </div>
+
+                <div class="arrow">
+                    ↓
+                </div>
+
+                <div class="flow-box">
+
+                    <strong>
+                        Φ = f<sub>d</sub> × γ<sub>BC</sub>
+                    </strong>
+
+                    Transition-aware blending
+
+                </div>
+
+                <div class="arrow">
+                    ↓
+                </div>
+
+                <div class="flow-box">
+
+                    <strong>
+                        BCM-DES
+                    </strong>
+
+                    Hybrid RANS–LES framework
+
+                </div>
 
             </div>
 
@@ -509,28 +1315,604 @@ footer {
 </section>
 
 
-<section id="contact" class="contact">
 
-    <h2 class="section-title">Let's Connect</h2>
+<!-- =========================
+     CASE STUDIES
+========================= -->
 
-    <p>
-        Interested in CFD, turbulence modelling, thermal sciences
-        and computational aerodynamics?
-    </p>
+<section
+    id="cases">
 
-    <a
-        href="https://www.linkedin.com/"
-        class="btn primary"
-        target="_blank">
-        Connect on LinkedIn →
-    </a>
+    <div class="container">
+
+        <div class="section-label">
+            03 — CASE STUDIES
+        </div>
+
+        <h2 class="section-title">
+            Three flows.
+            Three transition problems.
+        </h2>
+
+        <p class="section-intro">
+
+            The thesis applies BCM-DES to stationary and rotating
+            cylinders and to low-Reynolds-number airfoil flow,
+            examining how transition changes separation, drag and lift.
+
+        </p>
+
+
+        <div class="case-grid">
+
+
+            <!-- CASE 1 -->
+
+            <article class="case">
+
+                <div class="case-content">
+
+                    <div class="case-tag">
+                        CASE 01 / BLUFF BODY
+                    </div>
+
+                    <h3>
+                        Stationary Cylinder
+                    </h3>
+
+                    <p>
+
+                        Investigation of the drag crisis across
+                        Reynolds numbers from 5×10⁴ to 10⁶,
+                        including pressure recovery, separation
+                        behaviour and three-dimensional wake structures.
+
+                    </p>
+
+                    <span class="case-result">
+                        DRAG CRISIS
+                    </span>
+
+                </div>
+
+            </article>
+
+
+            <!-- CASE 2 -->
+
+            <article class="case">
+
+                <div class="case-content">
+
+                    <div class="case-tag">
+                        CASE 02 / ROTATING FLOW
+                    </div>
+
+                    <h3>
+                        Rotating Cylinder
+                    </h3>
+
+                    <p>
+
+                        Study of rotation-induced asymmetric
+                        transition at Re = 152,000 across spin
+                        ratios from α = 0 to 1.0.
+
+                    </p>
+
+                    <span class="case-result">
+                        LIFT CRISIS
+                    </span>
+
+                </div>
+
+            </article>
+
+
+            <!-- CASE 3 -->
+
+            <article class="case">
+
+                <div class="case-content">
+
+                    <div class="case-tag">
+                        CASE 03 / AIRFOIL
+                    </div>
+
+                    <h3>
+                        Eppler 387
+                    </h3>
+
+                    <p>
+
+                        Low-Reynolds-number airfoil study focused
+                        on laminar separation bubble formation,
+                        bubble migration, bursting and static stall.
+
+                    </p>
+
+                    <span class="case-result">
+                        STATIC STALL
+                    </span>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </div>
 
 </section>
 
 
+
+<!-- =========================
+     KEY RESULTS
+========================= -->
+
+<section class="results">
+
+    <div class="container">
+
+        <div class="section-label">
+            04 — KEY RESULTS
+        </div>
+
+        <h2 class="section-title">
+            What the model captured
+        </h2>
+
+        <p class="section-intro">
+
+            Selected findings reported in the thesis conclusions.
+
+        </p>
+
+
+        <div class="results-grid">
+
+
+            <div class="result-card">
+
+                <strong>
+                    ≈ 0.95 → ≈ 0.35
+                </strong>
+
+                <span>
+                    Cylinder C<sub>d</sub>
+                    across the drag-crisis study
+                </span>
+
+            </div>
+
+
+            <div class="result-card">
+
+                <strong>
+                    C<sub>l</sub> = −0.0185
+                </strong>
+
+                <span>
+                    BCM-DES prediction at
+                    Re = 152,000, α = 0.25
+                </span>
+
+            </div>
+
+
+            <div class="result-card">
+
+                <strong>
+                    11–12°
+                </strong>
+
+                <span>
+                    Approximate Eppler 387
+                    stall-angle region
+                </span>
+
+            </div>
+
+
+            <div class="result-card">
+
+                <strong>
+                    5–10%
+                </strong>
+
+                <span>
+                    Estimated incremental CPU cost
+                    relative to SA-DDES
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     THESIS
+========================= -->
+
+<section
+    id="thesis"
+    class="thesis">
+
+    <div class="container">
+
+        <div class="section-label">
+            05 — M.TECH THESIS
+        </div>
+
+
+        <div class="thesis-box">
+
+            <div class="thesis-label">
+                NATIONAL INSTITUTE OF TECHNOLOGY CALICUT
+            </div>
+
+            <h2 class="thesis-title">
+
+                Implementation and Testing of a Hybrid
+                RANS-LES (BCM-DES) Model for Transitional
+                Separated Flows over Curved Bluff Bodies
+
+            </h2>
+
+
+            <p class="thesis-meta">
+
+                M.Tech — Mechanical Engineering
+                (Thermal Sciences) · June 2026
+
+            </p>
+
+
+            <div class="buttons">
+
+                <!--
+                This link will work after we upload
+                your thesis PDF to:
+
+                thesis/Anupam_Vats_MTech_Thesis.pdf
+                -->
+
+                <a
+                    href="thesis/Anupam_Vats_MTech_Thesis.pdf"
+                    class="btn btn-primary">
+
+                    Download Full Thesis ↓
+
+                </a>
+
+
+                <a
+                    href="#research"
+                    class="btn btn-outline">
+
+                    Explore Research →
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     CONTRIBUTIONS
+========================= -->
+
+<section class="section-dark">
+
+    <div class="container">
+
+        <div class="section-label">
+            06 — CONTRIBUTIONS
+        </div>
+
+        <h2 class="section-title">
+            Research contributions
+        </h2>
+
+        <p class="section-intro">
+
+            Key technical contributions identified in the thesis.
+
+        </p>
+
+
+        <div class="contribution-grid">
+
+
+            <div class="contribution">
+
+                <h3>
+                    Transition-aware DES formulation
+                </h3>
+
+                <p>
+
+                    BCM-DES uses Φ = f<sub>d</sub> × γ<sub>BC</sub>
+                    as the blending factor to couple transition
+                    modelling with the DDES framework.
+
+                </p>
+
+            </div>
+
+
+            <div class="contribution">
+
+                <h3>
+                    Drag crisis prediction
+                </h3>
+
+                <p>
+
+                    BCM-DES captured the transition from laminar
+                    to turbulent separation and the associated
+                    reduction in cylinder drag across the studied
+                    Reynolds-number range.
+
+                </p>
+
+            </div>
+
+
+            <div class="contribution">
+
+                <h3>
+                    Lift crisis prediction
+                </h3>
+
+                <p>
+
+                    At Re = 152,000 and α = 0.25, BCM-DES predicted
+                    the negative lift associated with the lift-crisis
+                    regime, including the correct sign.
+
+                </p>
+
+            </div>
+
+
+            <div class="contribution">
+
+                <h3>
+                    Low-Reynolds-number airfoil flow
+                </h3>
+
+                <p>
+
+                    The Eppler 387 simulations captured laminar
+                    separation-bubble behaviour and its movement
+                    toward the leading edge near stall.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section
+    id="about">
+
+    <div class="container">
+
+        <div class="about-grid">
+
+
+            <div class="about-text">
+
+                <div class="section-label">
+                    07 — ABOUT
+                </div>
+
+                <h2 class="section-title">
+                    Anupam Vats
+                </h2>
+
+                <p>
+
+                    I am a Mechanical Engineering graduate
+                    specializing in Thermal Sciences and
+                    Computational Fluid Dynamics.
+
+                </p>
+
+                <p>
+
+                    My M.Tech research at the National Institute
+                    of Technology Calicut focused on transition-aware
+                    hybrid RANS–LES modelling for transitional
+                    separated flows.
+
+                </p>
+
+                <p>
+
+                    My work combines turbulence modelling,
+                    transition prediction, finite-volume CFD,
+                    aerodynamic flow analysis and numerical
+                    simulation.
+
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <div class="section-label">
+                    TECHNICAL AREAS
+                </div>
+
+                <h2 class="section-title">
+                    Skills
+                </h2>
+
+
+                <div class="skills">
+
+                    <span class="skill">
+                        CFD
+                    </span>
+
+                    <span class="skill">
+                        RANS
+                    </span>
+
+                    <span class="skill">
+                        LES
+                    </span>
+
+                    <span class="skill">
+                        DES / DDES
+                    </span>
+
+                    <span class="skill">
+                        Transition Modelling
+                    </span>
+
+                    <span class="skill">
+                        BCM-DES
+                    </span>
+
+                    <span class="skill">
+                        Finite Volume Method
+                    </span>
+
+                    <span class="skill">
+                        Compressible Flow
+                    </span>
+
+                    <span class="skill">
+                        ANSYS Fluent
+                    </span>
+
+                    <span class="skill">
+                        OpenFOAM
+                    </span>
+
+                    <span class="skill">
+                        Pointwise
+                    </span>
+
+                    <span class="skill">
+                        Python
+                    </span>
+
+                    <span class="skill">
+                        C++
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section
+    id="contact"
+    class="contact">
+
+    <div class="container">
+
+        <div class="section-label">
+            08 — CONTACT
+        </div>
+
+        <h2 class="section-title">
+            Let's talk CFD.
+        </h2>
+
+        <p>
+
+            Interested in computational fluid dynamics,
+            turbulence modelling, transition prediction,
+            aerodynamics or thermal sciences?
+
+        </p>
+
+
+        <div class="buttons"
+             style="justify-content:center;">
+
+
+            <!-- Replace these links with your actual profiles -->
+
+            <a
+                href="https://www.linkedin.com/"
+                target="_blank"
+                class="btn btn-primary">
+
+                LinkedIn →
+
+            </a>
+
+
+            <a
+                href="https://github.com/AnupamVats123"
+                target="_blank"
+                class="btn btn-outline">
+
+                GitHub →
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
 <footer>
-    © 2026 Anupam Vats • CFD & Thermal Engineering
+
+    © 2026 Anupam Vats · CFD & Thermal Engineering
+
 </footer>
+
 
 </body>
 </html>
