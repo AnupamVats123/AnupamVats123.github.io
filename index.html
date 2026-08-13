@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Anupam Vats | CFD & Thermal Engineering</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #07101f;
+    color: #e9f2ff;
+    line-height: 1.7;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 7%;
+    background: rgba(7,16,31,0.85);
+    backdrop-filter: blur(12px);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+nav a {
+    color: #b9c8da;
+    text-decoration: none;
+    margin-left: 25px;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: #54b9ff;
+}
+
+.hero {
+    min-height: 100vh;
+    padding: 150px 8% 100px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 75% 45%, rgba(40,140,220,0.20), transparent 30%),
+        linear-gradient(135deg,#050b16,#0a1830 55%,#06101e);
+}
+
+.hero:before {
+    content: "";
+    position: absolute;
+    width: 900px;
+    height: 500px;
+    right: -250px;
+    top: 180px;
+    background:
+        repeating-linear-gradient(
+            175deg,
+            transparent 0px,
+            transparent 8px,
+            rgba(85,180,255,0.12) 9px,
+            transparent 11px
+        );
+    transform: rotate(-8deg);
+    opacity: 0.8;
+}
+
+.hero-content {
+    max-width: 900px;
+    position: relative;
+    z-index: 2;
+}
+
+.tag {
+    color: #55bfff;
+    letter-spacing: 4px;
+    font-size: 13px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+h1 {
+    font-size: clamp(48px,8vw,92px);
+    line-height: 0.95;
+    margin-bottom: 30px;
+    letter-spacing: -3px;
+}
+
+.highlight {
+    color: #55bfff;
+}
+
+.hero p {
+    max-width: 760px;
+    color: #aebed2;
+    font-size: 19px;
+    margin-bottom: 35px;
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 14px 25px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.primary {
+    background: #39a9f4;
+    color: #06101c;
+}
+
+.secondary {
+    border: 1px solid #40516b;
+    color: white;
+}
+
+section {
+    padding: 100px 8%;
+}
+
+.section-title {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.section-subtitle {
+    color: #91a4ba;
+    max-width: 750px;
+    margin-bottom: 45px;
+}
+
+.research {
+    background: #091426;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    gap: 20px;
+}
+
+.card {
+    padding: 30px;
+    border: 1px solid #1d3049;
+    background: #0c1a2d;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: #42b5ff;
+}
+
+.card span {
+    color: #55bfff;
+    font-size: 13px;
+    letter-spacing: 2px;
+}
+
+.card h3 {
+    margin: 12px 0;
+    font-size: 23px;
+}
+
+.card p {
+    color: #9eb0c5;
+}
+
+.thesis {
+    background: #07101f;
+}
+
+.thesis-box {
+    max-width: 950px;
+    border-left: 3px solid #43b7ff;
+    padding: 35px;
+    background: #0b182a;
+}
+
+.thesis-box h3 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.metric {
+    padding: 14px 20px;
+    background: #101f34;
+    border-radius: 7px;
+    color: #b9d2e9;
+}
+
+.about {
+    background: #091426;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+}
+
+.about p {
+    color: #a5b6c9;
+}
+
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill {
+    padding: 9px 15px;
+    border: 1px solid #2b4059;
+    border-radius: 30px;
+    color: #a9c5df;
+}
+
+.contact {
+    text-align: center;
+    background: #050c17;
+}
+
+.contact p {
+    color: #9eb0c5;
+    margin: 20px auto 30px;
+}
+
+footer {
+    padding: 30px;
+    text-align: center;
+    color: #657991;
+    background: #040914;
+    font-size: 13px;
+}
+
+@media(max-width:700px) {
+
+    nav {
+        padding: 15px 5%;
+    }
+
+    nav .links {
+        display: none;
+    }
+
+    section {
+        padding: 75px 6%;
+    }
+
+    .hero {
+        padding: 130px 6% 80px;
+    }
+
+    h1 {
+        font-size: 52px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">ANUPAM VATS</div>
+
+    <div class="links">
+        <a href="#research">Research</a>
+        <a href="#thesis">Thesis</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="tag">
+            CFD ENGINEER • THERMAL SCIENCE • NUMERICAL SIMULATION
+        </div>
+
+        <h1>
+            I model <span class="highlight">transitional flows</span>
+            and investigate how turbulence models capture separation.
+        </h1>
+
+        <p>
+            My M.Tech research focuses on a transition-aware hybrid
+            RANS–LES approach for predicting transitional separated flows
+            using the BCM-DES model and the PRAVAHA-IITH compressible
+            finite-volume solver.
+        </p>
+
+        <div class="buttons">
+            <a href="#research" class="btn primary">
+                Explore My Research →
+            </a>
+
+            <a href="#thesis" class="btn secondary">
+                View My Thesis
+            </a>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="research" class="research">
+
+    <h2 class="section-title">Research</h2>
+
+    <p class="section-subtitle">
+        My thesis investigates transition-sensitive hybrid RANS–LES
+        modelling across canonical bluff-body and low-Reynolds-number
+        aerodynamic configurations.
+    </p>
+
+    <div class="cards">
+
+        <div class="card">
+            <span>01 — MODEL DEVELOPMENT</span>
+            <h3>BCM-DES</h3>
+            <p>
+                Coupling the SA-BCM transition model with the SA-DDES
+                framework through the blending parameter
+                Φ = f<sub>d</sub> × γ<sub>BC</sub>.
+            </p>
+        </div>
+
+        <div class="card">
+            <span>02 — SOLVER</span>
+            <h3>PRAVAHA-IITH</h3>
+            <p>
+                Simulations performed using an in-house compressible
+                unstructured finite-volume CFD solver.
+            </p>
+        </div>
+
+        <div class="card">
+            <span>03 — BLUFF BODY</span>
+            <h3>Drag Crisis</h3>
+            <p>
+                Stationary circular cylinder simulations from
+                Re = 5×10⁴ to 10⁶ to investigate transition-induced
+                drag reduction.
+            </p>
+        </div>
+
+        <div class="card">
+            <span>04 — ROTATING FLOW</span>
+            <h3>Lift Crisis</h3>
+            <p>
+                Rotating-cylinder simulations at Re = 152,000 across
+                multiple spin ratios to investigate rotation-induced
+                asymmetric transition.
+            </p>
+        </div>
+
+        <div class="card">
+            <span>05 — AIRFOIL</span>
+            <h3>Eppler 387</h3>
+            <p>
+                Low-Reynolds-number airfoil simulations examining
+                laminar separation bubbles, transition and static stall.
+            </p>
+        </div>
+
+        <div class="card">
+            <span>06 — FLOW PHYSICS</span>
+            <h3>Q-Criterion</h3>
+            <p>
+                Three-dimensional wake structures and turbulent
+                flow features investigated through CFD visualization.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="thesis" class="thesis">
+
+    <h2 class="section-title">M.Tech Thesis</h2>
+
+    <div class="thesis-box">
+
+        <h3>
+            Implementation and Testing of a Hybrid RANS-LES
+            (BCM-DES) Model for Transitional Separated Flows
+            over Curved Bluff Bodies
+        </h3>
+
+        <p>
+            Master of Technology in Mechanical Engineering
+            (Thermal Sciences), National Institute of Technology Calicut.
+        </p>
+
+        <div class="metrics">
+
+            <div class="metric">RANS–LES</div>
+            <div class="metric">BCM-DES</div>
+            <div class="metric">DDES</div>
+            <div class="metric">CFD</div>
+            <div class="metric">Compressible Flow</div>
+            <div class="metric">Finite Volume Method</div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="about" id="about">
+
+    <div class="about-grid">
+
+        <div>
+            <h2 class="section-title">About Me</h2>
+
+            <p>
+                I am a Mechanical Engineer specializing in Computational
+                Fluid Dynamics and Thermal Sciences. My research interests
+                include turbulence modelling, transitional flows,
+                hybrid RANS–LES methods, aerodynamic flows and numerical
+                simulation.
+            </p>
+
+            <br>
+
+            <p>
+                My M.Tech research at NIT Calicut focuses on developing
+                and testing the BCM-DES transition-aware hybrid
+                RANS–LES model for separated flows.
+            </p>
+
+        </div>
+
+        <div>
+
+            <h2 class="section-title">Technical Skills</h2>
+
+            <div class="skills">
+
+                <div class="skill">CFD</div>
+                <div class="skill">RANS</div>
+                <div class="skill">LES</div>
+                <div class="skill">DES / DDES</div>
+                <div class="skill">BCM Transition Model</div>
+                <div class="skill">ANSYS Fluent</div>
+                <div class="skill">OpenFOAM</div>
+                <div class="skill">Finite Volume Method</div>
+                <div class="skill">Compressible Flow</div>
+                <div class="skill">Python</div>
+                <div class="skill">C++</div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="contact" class="contact">
+
+    <h2 class="section-title">Let's Connect</h2>
+
+    <p>
+        Interested in CFD, turbulence modelling, thermal sciences
+        and computational aerodynamics?
+    </p>
+
+    <a
+        href="https://www.linkedin.com/"
+        class="btn primary"
+        target="_blank">
+        Connect on LinkedIn →
+    </a>
+
+</section>
+
+
+<footer>
+    © 2026 Anupam Vats • CFD & Thermal Engineering
+</footer>
+
+</body>
+</html>
