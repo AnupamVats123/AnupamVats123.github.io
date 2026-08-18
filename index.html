@@ -215,7 +215,8 @@ nav {
     max-width: 1000px;
 }
 
-.gradient-text {
+.gradient-text,
+.highlight {
     color: var(--blue);
 }
 
@@ -282,6 +283,10 @@ nav {
     display: flex;
     flex-wrap: wrap;
     gap: 42px;
+}
+
+.stat-full {
+    flex-basis: 100%;
 }
 
 .stat strong {
@@ -480,6 +485,24 @@ section {
     border-radius: 15px;
 }
 
+.flow-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 16px;
+
+    margin-bottom: 15px;
+}
+
+.flow-col .flow-box {
+    margin-bottom: 15px;
+}
+
+.flow-col .arrow {
+    margin-bottom: 15px;
+}
+
 .flow-box {
     padding: 18px;
 
@@ -544,7 +567,7 @@ section {
             rgba(5,12,22,0.10),
             rgba(5,12,22,0.96)
         );
-    
+
     position: relative;
 
     overflow: hidden;
@@ -782,6 +805,62 @@ section {
 
 
 /* =========================
+   PUBLICATIONS
+========================= */
+
+.pub-card {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+
+    padding: 26px 30px;
+
+    border: 1px solid var(--line);
+
+    border-radius: 12px;
+
+    background: #0a1727;
+}
+
+.pub-card-text {
+    max-width: 780px;
+}
+
+.pub-card-text p:first-child {
+    color: var(--text);
+    font-size: 15px;
+    margin-bottom: 6px;
+}
+
+.pub-card-text p:last-child {
+    color: #71859c;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.pub-status {
+    flex-shrink: 0;
+
+    padding: 8px 14px;
+
+    border-radius: 30px;
+
+    border: 1px solid #2a4058;
+
+    color: var(--blue);
+
+    font-size: 12px;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================
    ABOUT
 ========================= */
 
@@ -934,6 +1013,15 @@ footer {
         font-size: 27px;
     }
 
+    .pub-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .flow-row {
+        grid-template-columns: 1fr;
+    }
+
 }
 
 </style>
@@ -1031,6 +1119,19 @@ footer {
 
         <div class="hero-stats">
 
+            <div class="stat stat-full">
+
+                <strong>
+                    NIT Calicut (India)
+                </strong>
+
+                <span>
+                    M.Tech Research
+                </span>
+
+            </div>
+
+
             <div class="stat">
 
                 <strong>
@@ -1039,6 +1140,19 @@ footer {
 
                 <span>
                     Hybrid Model
+                </span>
+
+            </div>
+
+
+            <div class="stat">
+
+                <strong>
+                    Re = 5×10⁴–10⁶
+                </strong>
+
+                <span>
+                    Drag Crisis Study
                 </span>
 
             </div>
@@ -1060,24 +1174,11 @@ footer {
             <div class="stat">
 
                 <strong>
-                    Re = 140k to 10⁶
+                    α ≈ 11–12°
                 </strong>
 
                 <span>
-                    Drag Crisis Study
-                </span>
-
-            </div>
-
-
-            <div class="stat">
-
-                <strong>
-                    NIT Calicut (India)
-                </strong>
-
-                <span>
-                    M.Tech Research
+                    Eppler 387 Static Stall
                 </span>
 
             </div>
@@ -1135,7 +1236,8 @@ footer {
 
                     A transition-aware hybrid BCM-DES formulation
                     combining the SA-BCM transition model with
-                    the SA-DDES framework through a blending parameter.
+                    the SA-DDES framework through a blending parameter,
+                    Φ = f_d × γ_BC.
 
                 </p>
 
@@ -1156,7 +1258,8 @@ footer {
 
                     Implementation and testing were carried out
                     using the PRAVAHA-IITH compressible,
-                    unstructured finite-volume solver.
+                    unstructured finite-volume solver developed
+                    at IIT Hyderabad.
 
                 </p>
 
@@ -1176,8 +1279,9 @@ footer {
                 <p>
 
                     The BCM-DES formulation was validated using
-                    flat-plate transition benchmarks before
-                    application to separated aerodynamic flows.
+                    Schubauer-Klebanoff, T3A and T3B flat-plate
+                    transition benchmarks before application to
+                    separated aerodynamic flows.
 
                 </p>
 
@@ -1254,27 +1358,63 @@ footer {
 
             <div class="model-diagram">
 
-                <div class="flow-box">
+                <div class="flow-row">
 
-                    <strong>
-                        SA-BCM
-                    </strong>
+                    <div class="flow-col">
 
-                    Transition detection
+                        <div class="flow-box">
 
-                </div>
+                            <strong>
+                                SA-BCM
+                            </strong>
 
-                <div class="arrow">
-                    ↓
-                </div>
+                            Transition detection
 
-                <div class="flow-box">
+                        </div>
 
-                    <strong>
-                        γ<sub>BC</sub>
-                    </strong>
+                        <div class="arrow">
+                            ↓
+                        </div>
 
-                    BCM intermittency function
+                        <div class="flow-box">
+
+                            <strong>
+                                γ<sub>BC</sub>
+                            </strong>
+
+                            BCM intermittency function
+
+                        </div>
+
+                    </div>
+
+                    <div class="flow-col">
+
+                        <div class="flow-box">
+
+                            <strong>
+                                SA-DDES
+                            </strong>
+
+                            Wall-shielding / RANS–LES switch
+
+                        </div>
+
+                        <div class="arrow">
+                            ↓
+                        </div>
+
+                        <div class="flow-box">
+
+                            <strong>
+                                f<sub>d</sub>
+                            </strong>
+
+                            DDES shielding function
+
+                        </div>
+
+                    </div>
 
                 </div>
 
@@ -1571,7 +1711,8 @@ footer {
             <p class="thesis-meta">
 
                 M.Tech — Mechanical Engineering
-                (Thermal Sciences) · June 2026
+                (Thermal Sciences) · Guide: Dr. Athkuri Sai Saketha Chandra
+                · June 2026
 
             </p>
 
@@ -1579,7 +1720,7 @@ footer {
             <div class="buttons">
 
                 <!--
-                This link will work after we upload
+                This link will work after you upload
                 your thesis PDF to:
 
                 thesis/Anupam_Vats_MTech_Thesis.pdf
@@ -1648,7 +1789,8 @@ footer {
 
                     BCM-DES uses Φ = f<sub>d</sub> × γ<sub>BC</sub>
                     as the blending factor to couple transition
-                    modelling with the DDES framework.
+                    modelling with the DDES framework, with no
+                    additional transport equations required.
 
                 </p>
 
@@ -1665,8 +1807,9 @@ footer {
 
                     BCM-DES captured the transition from laminar
                     to turbulent separation and the associated
-                    reduction in cylinder drag across the studied
-                    Reynolds-number range.
+                    reduction in cylinder drag across Re = 5×10⁴
+                    to 10⁶, using meshes of at most ~2.5 million
+                    cells versus 38–100 million for wall-resolved LES.
 
                 </p>
 
@@ -1683,7 +1826,9 @@ footer {
 
                     At Re = 152,000 and α = 0.25, BCM-DES predicted
                     the negative lift associated with the lift-crisis
-                    regime, including the correct sign.
+                    regime (C<sub>l</sub> = −0.0185), including the
+                    correct sign — unlike standard SA-DDES, which
+                    predicted a qualitatively wrong positive lift.
 
                 </p>
 
@@ -1699,13 +1844,61 @@ footer {
                 <p>
 
                     The Eppler 387 simulations captured laminar
-                    separation-bubble behaviour and its movement
-                    toward the leading edge near stall.
+                    separation-bubble behaviour and its migration
+                    toward the leading edge near stall, with stall
+                    onset near α ≈ 11°–12°.
 
                 </p>
 
             </div>
 
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     PUBLICATIONS
+========================= -->
+
+<section>
+
+    <div class="container">
+
+        <div class="section-label">
+            07 — PUBLICATIONS
+        </div>
+
+        <h2 class="section-title">
+            Publications
+        </h2>
+
+        <p class="section-intro">
+
+            Work arising from this thesis.
+
+        </p>
+
+        <div class="pub-card">
+
+            <div class="pub-card-text">
+                <p>
+                    A. Vats, A. Sa, and S. S. C. Athkuri, "BCM-DES: A
+                    transition-aware detached eddy simulation model for
+                    transitional separated flows over curved bluff bodies."
+                </p>
+                <p>
+                    Submitted for publication, 2025
+                </p>
+            </div>
+
+            <span class="pub-status">
+                Under Review
+            </span>
 
         </div>
 
@@ -1730,7 +1923,7 @@ footer {
             <div class="about-text">
 
                 <div class="section-label">
-                    07 — ABOUT
+                    08 — ABOUT
                 </div>
 
                 <h2 class="section-title">
@@ -1748,9 +1941,10 @@ footer {
                 <p>
 
                     My M.Tech research at the National Institute
-                    of Technology Calicut focused on transition-aware
-                    hybrid RANS–LES modelling for transitional
-                    separated flows.
+                    of Technology Calicut, under the guidance of
+                    Dr. Athkuri Sai Saketha Chandra, focused on
+                    transition-aware hybrid RANS–LES modelling for
+                    transitional separated flows.
 
                 </p>
 
@@ -1854,7 +2048,7 @@ footer {
     <div class="container">
 
         <div class="section-label">
-            08 — CONTACT
+            09 — CONTACT
         </div>
 
         <h2 class="section-title">
