@@ -1732,6 +1732,124 @@ footer {
     .hero-cylinder-label{left:74%;font-size:8px}
 }
 
+
+/* =========================
+   ADDED — THESIS PAGE VIEWER
+   ========================= */
+
+.thesis-viewer {
+    position: fixed;
+    inset: 0;
+    z-index: 5000;
+    display: none;
+    flex-direction: column;
+    background: #050b14;
+}
+
+.thesis-viewer.open {
+    display: flex;
+}
+
+.thesis-viewer-toolbar {
+    min-height: 64px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 18px;
+    background: rgba(5,11,20,0.98);
+    border-bottom: 1px solid #20334b;
+    flex-wrap: wrap;
+}
+
+.thesis-viewer-title {
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-right: auto;
+    color: #edf5ff;
+}
+
+.thesis-viewer-toolbar button,
+.thesis-page-input {
+    border: 1px solid #29445f;
+    background: #0c1b2d;
+    color: #edf5ff;
+    border-radius: 7px;
+    padding: 9px 12px;
+    font: inherit;
+}
+
+.thesis-viewer-toolbar button {
+    cursor: pointer;
+}
+
+.thesis-viewer-toolbar button:hover {
+    border-color: var(--blue);
+    color: var(--blue);
+}
+
+.thesis-page-input {
+    width: 68px;
+    text-align: center;
+}
+
+.thesis-page-controls {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.thesis-page-count {
+    color: #9aadc3;
+    font-size: 13px;
+}
+
+.thesis-viewer-stage {
+    flex: 1;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 28px;
+    background: #09111f;
+}
+
+#thesisPageImage {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: none;
+    box-shadow: 0 18px 55px rgba(0,0,0,.55);
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.thesis-viewer-note {
+    color: #71859c;
+    font-size: 11px;
+    margin-left: 5px;
+}
+
+@media(max-width:650px) {
+    .thesis-viewer-toolbar {
+        padding: 8px;
+        gap: 6px;
+    }
+
+    .thesis-viewer-title {
+        width: 100%;
+        margin-right: 0;
+        font-size: 13px;
+    }
+
+    .thesis-viewer-note {
+        display: none;
+    }
+
+    .thesis-viewer-stage {
+        padding: 12px;
+    }
+}
+
 </style>
 
 </head>
@@ -2560,15 +2678,14 @@ footer {
             <div class="buttons">
 
 
-                <a
-                    href="THESIS_AnupamVats.pdf"
-                    target="_blank"
-                    rel="noopener"
-                    class="btn btn-primary">
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="openThesisViewer()">
 
                     View Thesis →
 
-                </a>
+                </button>
 
 
                 <a
@@ -2590,6 +2707,57 @@ footer {
 
 </section>
 
+
+
+
+<!-- =========================
+     ADDED — THESIS VIEWER
+     ========================= -->
+<div id="thesisViewer" class="thesis-viewer" aria-hidden="true">
+
+    <div class="thesis-viewer-toolbar">
+
+        <div class="thesis-viewer-title">
+            ANUPAM VATS — M.TECH THESIS
+        </div>
+
+        <button type="button" onclick="previousThesisPage()">← Prev</button>
+
+        <div class="thesis-page-controls">
+            <input
+                id="thesisPageInput"
+                class="thesis-page-input"
+                type="number"
+                min="1"
+                max="91"
+                value="1"
+                aria-label="Jump to page">
+
+            <span class="thesis-page-count">/ 91</span>
+
+            <button type="button" onclick="jumpToThesisPage()">Go</button>
+        </div>
+
+        <button type="button" onclick="nextThesisPage()">Next →</button>
+        <button type="button" onclick="zoomThesis(-0.1)">−</button>
+        <span id="thesisZoomLabel" style="min-width:50px;text-align:center;color:#9aadc3;font-size:13px;">100%</span>
+        <button type="button" onclick="zoomThesis(0.1)">+</button>
+        <button type="button" onclick="fitThesisPage()">Fit</button>
+        <button type="button" onclick="closeThesisViewer()">✕ Close</button>
+
+        <span class="thesis-viewer-note">← → to change page</span>
+
+    </div>
+
+    <div id="thesisViewerStage" class="thesis-viewer-stage">
+        <img
+            id="thesisPageImage"
+            src="thesis/page-001.webp"
+            alt="Thesis page 1"
+            draggable="false">
+    </div>
+
+</div>
 
 
 <!-- =========================
@@ -3125,6 +3293,111 @@ footer {
 </footer>
 
 
+
+
+<script>
+/* =========================
+   ADDED — THESIS PAGE VIEWER
+   ========================= */
+
+(() => {
+    const TOTAL_PAGES = 91;
+    const viewer = document.getElementById("thesisViewer");
+    const image = document.getElementById("thesisPageImage");
+    const stage = document.getElementById("thesisViewerStage");
+    const input = document.getElementById("thesisPageInput");
+    const zoomLabel = document.getElementById("thesisZoomLabel");
+
+    let currentPage = 1;
+    let zoom = 1;
+
+    window.openThesisViewer = function() {
+        viewer.classList.add("open");
+        viewer.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        showThesisPage(currentPage);
+
+        if (viewer.requestFullscreen) {
+            viewer.requestFullscreen().catch(() => {});
+        }
+    };
+
+    window.closeThesisViewer = function() {
+        if (document.fullscreenElement && document.exitFullscreen) {
+            document.exitFullscreen().catch(() => {});
+        }
+        viewer.classList.remove("open");
+        viewer.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+    };
+
+    function showThesisPage(page) {
+        currentPage = Math.max(1, Math.min(TOTAL_PAGES, Number(page) || 1));
+
+        const number = String(currentPage).padStart(3, "0");
+        image.src = `thesis/page-${number}.webp`;
+        image.alt = `Thesis page ${currentPage}`;
+        input.value = currentPage;
+
+        stage.scrollTop = 0;
+        stage.scrollLeft = 0;
+    }
+
+    window.previousThesisPage = function() {
+        showThesisPage(currentPage - 1);
+    };
+
+    window.nextThesisPage = function() {
+        showThesisPage(currentPage + 1);
+    };
+
+    window.jumpToThesisPage = function() {
+        showThesisPage(input.value);
+    };
+
+    window.zoomThesis = function(change) {
+        zoom = Math.max(0.5, Math.min(2.5, zoom + change));
+        image.style.width = `${zoom * 100}%`;
+        image.style.height = "auto";
+        zoomLabel.textContent = `${Math.round(zoom * 100)}%`;
+    };
+
+    window.fitThesisPage = function() {
+        if (!image.naturalWidth) return;
+
+        const availableWidth = stage.clientWidth - 56;
+        const fit = availableWidth / image.naturalWidth;
+
+        zoom = Math.max(0.5, Math.min(1, fit));
+        image.style.width = `${zoom * 100}%`;
+        image.style.height = "auto";
+        zoomLabel.textContent = `${Math.round(zoom * 100)}%`;
+    };
+
+    input.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") jumpToThesisPage();
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if (!viewer.classList.contains("open")) return;
+        if (event.target.tagName === "INPUT") {
+            if (event.key === "Escape") closeThesisViewer();
+            return;
+        }
+        if (event.key === "ArrowLeft") previousThesisPage();
+        if (event.key === "ArrowRight") nextThesisPage();
+        if (event.key === "+" || event.key === "=") zoomThesis(0.1);
+        if (event.key === "-") zoomThesis(-0.1);
+        if (event.key === "Escape") closeThesisViewer();
+    });
+
+    image.addEventListener("contextmenu", event => event.preventDefault());
+    image.addEventListener("dragstart", event => event.preventDefault());
+    image.addEventListener("load", () => {
+        if (zoom === 1) fitThesisPage();
+    });
+})();
+</script>
 
 <script>
 /* =========================
