@@ -1850,6 +1850,138 @@ footer {
     }
 }
 
+
+/* =========================
+   ADDED — CASE STUDY INFORMATION MODAL
+   ========================= */
+
+.case-result {
+    border: none;
+    font-family: inherit;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.case-result:hover {
+    transform: translateY(-2px);
+    background: #163653;
+    color: white;
+}
+
+.case-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 6000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(2,8,20,0.82);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.case-modal.active {
+    display: flex;
+}
+
+.case-modal-content {
+    position: relative;
+    width: min(720px, 94vw);
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 42px;
+    background: linear-gradient(145deg, #071426, #030b17);
+    border: 1px solid rgba(40,150,255,0.35);
+    border-radius: 18px;
+    box-shadow:
+        0 25px 80px rgba(0,0,0,0.65),
+        0 0 40px rgba(0,120,255,0.08);
+    animation: caseModalIn 0.25s ease;
+}
+
+@keyframes caseModalIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.case-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 18px;
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+    color: #dce9f7;
+    font-size: 25px;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.case-modal-close:hover {
+    background: rgba(255,255,255,0.1);
+    transform: rotate(90deg);
+}
+
+.case-modal-label {
+    color: var(--blue);
+    font-size: 12px;
+    letter-spacing: 3px;
+    font-weight: 600;
+    margin-bottom: 14px;
+}
+
+.case-modal-content h2 {
+    margin: 0 0 24px;
+    color: #f2f7ff;
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.15;
+}
+
+#caseInfoText {
+    color: #b9c8d9;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+#caseInfoText h3 {
+    color: #e8f2ff;
+    font-size: 18px;
+    margin-top: 25px;
+    margin-bottom: 8px;
+}
+
+#caseInfoText p {
+    margin: 0 0 15px;
+}
+
+#caseInfoText strong {
+    color: #4db3ff;
+}
+
+@media (max-width: 600px) {
+    .case-modal {
+        padding: 15px;
+    }
+
+    .case-modal-content {
+        padding: 32px 24px;
+    }
+
+    #caseInfoText {
+        font-size: 15px;
+    }
+}
+
 </style>
 
 </head>
@@ -2426,9 +2558,9 @@ footer {
                     </p>
 
 
-                    <span class="case-result">
+                    <button type="button" class="case-result" onclick="openCaseInfo('drag')">
                         DRAG CRISIS
-                    </span>
+                    </button>
 
 
                 </div>
@@ -2465,9 +2597,9 @@ footer {
                     </p>
 
 
-                    <span class="case-result">
+                    <button type="button" class="case-result" onclick="openCaseInfo('lift')">
                         LIFT CRISIS
-                    </span>
+                    </button>
 
 
                 </div>
@@ -2505,9 +2637,9 @@ footer {
                     </p>
 
 
-                    <span class="case-result">
+                    <button type="button" class="case-result" onclick="openCaseInfo('stall')">
                         STATIC STALL
-                    </span>
+                    </button>
 
 
                 </div>
@@ -2709,6 +2841,30 @@ footer {
 
 
 
+
+
+<!-- =========================
+     ADDED — CASE STUDY INFORMATION MODAL
+     ========================= -->
+<div id="caseInfoModal" class="case-modal" aria-hidden="true">
+
+    <div class="case-modal-content" role="dialog" aria-modal="true" aria-labelledby="caseInfoTitle">
+
+        <button type="button" class="case-modal-close" onclick="closeCaseInfo()" aria-label="Close">
+            ×
+        </button>
+
+        <div class="case-modal-label" id="caseInfoLabel">
+            CASE STUDY
+        </div>
+
+        <h2 id="caseInfoTitle"></h2>
+
+        <div id="caseInfoText"></div>
+
+    </div>
+
+</div>
 
 <!-- =========================
      ADDED — THESIS VIEWER
@@ -3294,6 +3450,177 @@ footer {
 
 
 
+
+
+<script>
+/* =========================
+   ADDED — CASE STUDY INFORMATION
+   ========================= */
+
+const caseInformation = {
+
+    drag: {
+        label: "CASE 01 / BLUFF BODY",
+        title: "Drag Crisis",
+        content: `
+            <p>
+                <strong>Drag crisis</strong> refers to the rapid reduction
+                in aerodynamic drag that occurs over a certain Reynolds
+                number range for a bluff body such as a circular cylinder.
+            </p>
+
+            <h3>What happens?</h3>
+
+            <p>
+                As the Reynolds number increases, the boundary layer
+                undergoes a transition from predominantly laminar to
+                turbulent behaviour. The resulting change in boundary-layer
+                behaviour can significantly alter the separation point and
+                wake structure.
+            </p>
+
+            <h3>Why is it important?</h3>
+
+            <p>
+                The change in separation behaviour can produce a substantial
+                change in the pressure distribution around the cylinder,
+                leading to a sharp decrease in drag.
+            </p>
+
+            <h3>In this case study</h3>
+
+            <p>
+                The stationary-cylinder study investigates the drag crisis
+                across Reynolds numbers from approximately
+                <strong>5 × 10⁴ to 10⁶</strong>, including pressure recovery,
+                separation behaviour and three-dimensional wake structures.
+            </p>
+        `
+    },
+
+    lift: {
+        label: "CASE 02 / ROTATING FLOW",
+        title: "Lift Crisis",
+        content: `
+            <p>
+                <strong>Lift crisis</strong> describes a significant change
+                in the aerodynamic lift behaviour of a rotating cylinder
+                as the flow and rotation conditions change.
+            </p>
+
+            <h3>What happens?</h3>
+
+            <p>
+                Rotation changes the velocity distribution around the
+                cylinder. This creates an asymmetric flow field and changes
+                the pressure distribution on the two sides of the cylinder.
+            </p>
+
+            <h3>Why is it important?</h3>
+
+            <p>
+                The interaction between rotation, boundary-layer behaviour
+                and flow separation can strongly influence the generated
+                lift and the structure of the wake.
+            </p>
+
+            <h3>In this case study</h3>
+
+            <p>
+                The rotating-cylinder study examines rotation-induced
+                asymmetric transition at
+                <strong>Re = 152,000</strong> across spin ratios from
+                <strong>α = 0 to 1.0</strong>.
+            </p>
+        `
+    },
+
+    stall: {
+        label: "CASE 03 / AIRFOIL",
+        title: "Static Stall",
+        content: `
+            <p>
+                <strong>Static stall</strong> occurs when an airfoil reaches
+                a sufficiently high angle of attack that the boundary layer
+                can no longer remain attached over the required portion of
+                the airfoil surface.
+            </p>
+
+            <h3>What happens?</h3>
+
+            <p>
+                Flow separation progressively develops over the airfoil.
+                As separation becomes stronger, the aerodynamic lift can
+                decrease while aerodynamic drag increases.
+            </p>
+
+            <h3>Low-Reynolds-number effects</h3>
+
+            <p>
+                At low Reynolds numbers, laminar separation bubbles can
+                develop on the airfoil surface. Their formation, movement
+                and bursting can strongly affect the transition and
+                separation behaviour.
+            </p>
+
+            <h3>In this case study</h3>
+
+            <p>
+                The <strong>Eppler 387</strong> study focuses on low-Reynolds-
+                number airfoil flow at
+                <strong>Re = 100,000</strong>, examining laminar separation
+                bubble formation, bubble migration, bursting and static
+                stall.
+            </p>
+        `
+    }
+
+};
+
+function openCaseInfo(type) {
+
+    const data = caseInformation[type];
+
+    if (!data) return;
+
+    document.getElementById("caseInfoLabel").textContent = data.label;
+    document.getElementById("caseInfoTitle").textContent = data.title;
+    document.getElementById("caseInfoText").innerHTML = data.content;
+
+    const modal = document.getElementById("caseInfoModal");
+
+    modal.classList.add("active");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+}
+
+function closeCaseInfo() {
+
+    const modal = document.getElementById("caseInfoModal");
+
+    modal.classList.remove("active");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+}
+
+document.getElementById("caseInfoModal").addEventListener("click", function(event) {
+
+    if (event.target === this) {
+        closeCaseInfo();
+    }
+
+});
+
+document.addEventListener("keydown", function(event) {
+
+    const modal = document.getElementById("caseInfoModal");
+
+    if (event.key === "Escape" && modal.classList.contains("active")) {
+        closeCaseInfo();
+    }
+
+});
+</script>
 
 <script>
 /* =========================
